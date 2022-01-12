@@ -49,14 +49,13 @@ This will create an executable named `khsload` in your directory. that can be ex
 
 Results saved to a `CSV` file can be plotted to a scatter graph with the following command 
 
-
-Run a Load test save to `test.csv` with the following command
+** Run a Load test and save to `test.csv` with the following command **
 
 ```
     $./khsload do http://keyholesoftware.com --users 4 --duration 20 --save test.csv 
 ```
 
-Generate a plot with the resulting `test.csv`
+** Generate a plot with the resulting `test.csv` **
 
 ```
     $./khsload plot test.csv
