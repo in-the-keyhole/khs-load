@@ -49,13 +49,13 @@ This will create an executable named `khsload` in your directory. that can be ex
 
 Results saved to a `CSV` file can be plotted to a scatter graph with the following command 
 
-** Run a Load test and save to `test.csv` with the following command **
+**Run a Load test and save to `test.csv` with the following command**
 
 ```
     $./khsload do http://keyholesoftware.com --users 4 --duration 20 --save test.csv 
 ```
 
-** Generate a plot with the resulting `test.csv` **
+**Generate a plot with the resulting `test.csv`**
 
 ```
     $./khsload plot test.csv
@@ -67,18 +67,52 @@ Here's and example graph
 
 ![](khsplot.png)
 
-
-
-
-
-
-
-
 ### Configuration YAML 
 
-Options can be specified 
+Instead of a command line flags test options can be defined in a `YAML` based configuration file. 
 
-By default 
+Here's an example YAML file...
+```
+#
+# Number of Users to Simulate 
+#
+users: 25
+#
+# Seconds to wait while ramping us users
+#
+ramp: 2
+#
+# Seconds to run the API load test
+#
+duration: 120
+#
+# Secconds to wait inbetween API requests
+#
+wait: 1
+#
+# Template used to apply token to API request Headers
+#
+tokentemplate: "Bearer {{.}}"
+#
+# URL required to obtain an authorization Token
+#
+# 
+auth:
+  url: https://<authenticate URL>
+  userid: xxxxx
+  password: dddddd
+  tokenizeusing: ","
+  gettoken: "token"
+  splitwith: ":"
+#
+# URL's to load test
+#
+url:
+  - POST,<URL>%201,key=value&key2=value2
+  - GET,<URL>
+
+```
+
 
 
 
