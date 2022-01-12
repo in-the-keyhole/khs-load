@@ -6,7 +6,8 @@ Command Line utility written in [Go](https://go.dev) that load tests API's with 
 
 1. Clone Repository 
 
-2. Open a command line in cloned directory and excute the following
+2. Open a command line in cloned directory and execute the following
+
 ```
     $ ./bin/macosx/load do https://keyholesoftware.com --users 2 --duration 30 
 ```
@@ -14,16 +15,16 @@ Command Line utility written in [Go](https://go.dev) that load tests API's with 
 
 ## Command Line Flags 
 
-The following flags can be used to configure your load test
+The following command line flags can be used to configure your load test
 
-
-
-
-
-
-
-
-
+```
+    --duration  Int      Number of seconds to run test
+    --users     Int      Number of users to simulate 
+    --ramp      Int      Number of seconds between starting users
+    --wait      Int      Number of seconds to wait between requests  
+    --config    string   YAML config file see YAML Config section below
+    --save      string   Save results to CSV file
+    --replace   string   Save and replace file if exists results to CSV file
 
 
 ## Installing and Running from Source Code
