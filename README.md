@@ -112,6 +112,23 @@ url:
   - GET,<URL>
 
 ```
+## Token Based Authorization 
+This utilitty supports load testing `TOKEN` based authentication schemes. If an API has a persistent access token that can be applied to request headers,you can specify this using the command line `-token` flag, or define in the `YAML` config. 
+
+```
+    $./khsload do <some url> -token <auth token>
+```
+
+Tokens will be applied to request headers using the `tokentemplate` expression. This expression allows the token value to be applied to `authorization` request `Header`
+field. 
+
+``` 
+    $./khsload do <some url> -authtoken <auth token> -tokentemplate "{{Bearer .}}"
+```
+
+
+
+
 
 
 

@@ -137,6 +137,12 @@ func TokenTemplate() string {
 
 }
 
+func SetTokenTemplate(template string) {
+
+	yamlConfig.TokenTemplate = template
+
+}
+
 func SetAuthToken(token string) {
 	yamlConfig.AuthToken = token
 }

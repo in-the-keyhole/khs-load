@@ -156,6 +156,12 @@ func applyFlags(cmd *cobra.Command) {
 	iwait, _ := strconv.Atoi(waitFlag)
 	config.SetWait(iwait)
 
+	tokenFlag, _ := cmd.Flags().GetString("authtoken")
+	config.SetAuthToken(tokenFlag)
+
+	templateFlag, _ := cmd.Flags().GetString("tokentemplate")
+	config.SetTokenTemplate(templateFlag)
+
 	if configFile != "" {
 
 		fmt.Println("Info->Configuration Found, values in config file will override command line args")
@@ -206,6 +212,8 @@ func init() {
 	testCmd.PersistentFlags().String("users", "1", "Simulated Users")
 	testCmd.PersistentFlags().String("wait", "1", "Seconds to wait between requests")
 	testCmd.PersistentFlags().String("duration", "20", "Duration to Run Test")
+	testCmd.PersistentFlags().String("authtoken", "", "Authorization Token")
+	testCmd.PersistentFlags().String("tokentemplate", "", "Authorization header value format")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:

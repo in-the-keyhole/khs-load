@@ -19,8 +19,17 @@ wait: 1
 #
 tokentemplate: "Bearer {{.}}"
 #
-# URL required to obtain an authorization Token
+# This is for an auth token that exists
+# Note: Might be better and more secure to apply this via the -token 
+# command line argument 
 #
+authtoken: "*** some auth token ***"
+#
+# URL required to obtain an authorization Token from an athentication API 
+# that returns a token
+#
+# Note: If an authorization token already exists, you won't need to use this 
+# to obtain one
 # 
 auth:
   url: https://<authenticate URL>
