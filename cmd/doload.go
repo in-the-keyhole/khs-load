@@ -40,16 +40,9 @@ var testCmd = &cobra.Command{
 	can be specified as a command line argument, or multiple URI's can be listed in a YAML file. `,
 	Run: func(cmd *cobra.Command, args []string) {
 
-		configFile, _ := cmd.Flags().GetString("config")
+		applyFlags(cmd)
+
 		saveFile, _ := cmd.Flags().GetString("save")
-
-		usersFlag, _ := cmd.Flags().GetString("users")
-		iusr, _ := strconv.Atoi(usersFlag)
-		config.SetUsers(iusr)
-
-		durationFlag, _ := cmd.Flags().GetString("duration")
-		idur, _ := strconv.Atoi(durationFlag)
-		config.SetDuration(idur)
 
 		versionFlag, _ := cmd.Flags().GetString("version")
 
@@ -76,13 +69,6 @@ var testCmd = &cobra.Command{
 
 		if replaceFile != "" {
 			saveFile = replaceFile
-		}
-
-		if configFile != "" {
-
-			fmt.Println("Info->Configuration Found, values in config file will override command line args")
-			config.Load(configFile)
-
 		}
 
 		// apply flags
@@ -150,6 +136,35 @@ var testCmd = &cobra.Command{
 	},
 }
 
+func applyFlags(cmd *cobra.Command) {
+
+	configFile, _ := cmd.Flags().GetString("config")
+
+	usersFlag, _ := cmd.Flags().GetString("users")
+	iusr, _ := strconv.Atoi(usersFlag)
+	config.SetUsers(iusr)
+
+	durationFlag, _ := cmd.Flags().GetString("duration")
+	idur, _ := strconv.Atoi(durationFlag)
+	config.SetDuration(idur)
+
+	rampFlag, _ := cmd.Flags().GetString("ramp")
+	iramp, _ := strconv.Atoi(rampFlag)
+	config.SetRamp(iramp)
+
+	waitFlag, _ := cmd.Flags().GetString("wait")
+	iwait, _ := strconv.Atoi(waitFlag)
+	config.SetWait(iwait)
+
+	if configFile != "" {
+
+		fmt.Println("Info->Configuration Found, values in config file will override command line args")
+		config.Load(configFile)
+
+	}
+
+}
+
 func doUser(ctx context.Context, urls []string, user int) {
 
 	seconds := strconv.Itoa(config.Wait())
@@ -189,6 +204,7 @@ func init() {
 	testCmd.PersistentFlags().String("save", "", "save API stats to file, in CSV format")
 	testCmd.PersistentFlags().String("replace", "", "save API stats to file, replace file if exists, in CSV format")
 	testCmd.PersistentFlags().String("users", "1", "Simulated Users")
+	testCmd.PersistentFlags().String("wait", "1", "Seconds to wait between requests")
 	testCmd.PersistentFlags().String("duration", "20", "Duration to Run Test")
 
 	// Cobra supports local flags which will only run when this command

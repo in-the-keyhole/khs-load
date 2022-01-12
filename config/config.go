@@ -100,6 +100,10 @@ func Wait() int {
 	return yamlConfig.Wait
 }
 
+func SetWait(w int) {
+	yamlConfig.Wait = w
+}
+
 func Ramp() int {
 
 	if yamlConfig.Ramp == 0 {
@@ -107,6 +111,10 @@ func Ramp() int {
 	}
 
 	return yamlConfig.Ramp
+}
+
+func SetRamp(r int) {
+	yamlConfig.Ramp = r
 }
 
 func Users() int {
