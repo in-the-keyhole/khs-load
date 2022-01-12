@@ -49,6 +49,19 @@ This will create an executable named `khsload` in your directory. that can be ex
 
 Results saved to a `CSV` file can be plotted to a scatter graph with the following command 
 
+```
+    $./khsload plot <CSV filename>
+```
+
+A scatter based Graph will be plotted to a file named `khsplot.png` 
+
+Here's and example graph
+
+![](khsplot.png)
+
+
+
+
 
 
 
