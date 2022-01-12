@@ -1,6 +1,6 @@
 # Keyhole Software Load Testing Utility
 
-Command Line utility written in +[Go](https://go.dev) that load tests API's with a specified simulated users. Reports throughput statistics and performance Graphs can be generated. 
+Command Line utility written in [Go](https://go.dev) that load tests API's with a specified simulated users. Reports throughput statistics and performance Graphs can be generated. 
 
 ## Running 
 
