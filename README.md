@@ -25,8 +25,7 @@ The following command line flags can be used to configure your load test
     --config    string   YAML config file see YAML Config section below
     --save      string   Save results to CSV file
     --replace   string   Save and replace file if exists results to CSV file
-
-
+```
 ## Installing and Running from Source Code
 
 - Prerequisites: +[Install Go](https://go.dev/doc/install) 
