@@ -28,11 +28,11 @@ The following command line flags can be used to configure your load test
 ```
 ## Installing and Running from Source Code
 
-- Prerequisites: [Install Go](https://go.dev/doc/install) 
+1. [Install Go](https://go.dev/doc/install) 
 
-1. Clone Repo 
+2. Clone Repo 
 
-2. Open a command line terminal and navigate to the repo directory and enter the following commands 
+3. Open a command line terminal and navigate to the repo directory and enter the following commands 
 
 ```
     $ go install
@@ -45,8 +45,21 @@ This will create an executable named `khsload` in your directory. that can be ex
     $./khsload 
 ```
 
+## Plotting Results 
+
+Results saved to a `CSV` file can be plotted to a scatter graph with the following command 
+
+
+
+
+
 ### Configuration YAML 
 
+Options can be specified 
+
 By default 
+
+
+
 
 
