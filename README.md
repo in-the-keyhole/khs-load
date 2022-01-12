@@ -9,7 +9,7 @@ Command Line utility written in [Go](https://go.dev) that load tests API's with 
 2. Open a command line in cloned directory and execute the following
 
 ```
-    $ ./bin/macosx/load do https://keyholesoftware.com --users 2 --duration 30 
+    $ ./bin/macosx/khsload do https://keyholesoftware.com --users 2 --duration 30 
 ```
 3. Results will be output to the console 
 
