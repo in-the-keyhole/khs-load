@@ -20,6 +20,7 @@ import (
 	"bytes"
 	"log"
 	"os"
+	"strings"
 	"text/template"
 
 	"gopkg.in/yaml.v2"
@@ -53,13 +54,31 @@ type ConfigData struct {
 	TokenTemplate string
 }
 
-var yamlConfig ConfigData
+var yamlConfig ConfigData = ConfigData{}
 
 var templateToken string
 
 func IsAuth() bool {
 
 	return yamlConfig.Auth.Url != ""
+
+}
+
+// SetName receives a pointer to Foo so it can modify it.
+func SetDuration(duration int) {
+	yamlConfig.Duration = duration
+}
+
+func AddUrl(url string) {
+	m := "GET"
+	u := url
+	t := strings.Split(url, ",")
+	if len(t) == 2 {
+		m = t[0]
+		u = t[1]
+	}
+
+	yamlConfig.Url = []string{m + "," + u}
 
 }
 
@@ -97,6 +116,11 @@ func Users() int {
 	}
 
 	return yamlConfig.Users
+}
+
+// SetName receives a pointer to Foo so it can modify it.
+func SetUsers(users int) {
+	yamlConfig.Users = users
 }
 
 func TokenTemplate() string {
@@ -183,7 +207,7 @@ func Load(file string) {
 	}
 
 	//Config := ConfigData{}
-	yamlConfig = ConfigData{}
+	//yamlConfig = ConfigData{}
 
 	data, err := os.ReadFile(configFile)
 	check(err)

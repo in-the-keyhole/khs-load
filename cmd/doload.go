@@ -41,8 +41,24 @@ var testCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 
 		configFile, _ := cmd.Flags().GetString("config")
-
 		saveFile, _ := cmd.Flags().GetString("save")
+
+		usersFlag, _ := cmd.Flags().GetString("users")
+		iusr, _ := strconv.Atoi(usersFlag)
+		config.SetUsers(iusr)
+
+		durationFlag, _ := cmd.Flags().GetString("duration")
+		idur, _ := strconv.Atoi(durationFlag)
+		config.SetDuration(idur)
+
+		versionFlag, _ := cmd.Flags().GetString("version")
+
+		if versionFlag != "" {
+
+			fmt.Println("Keyhole Software Api load tester Version - BETA")
+			return
+
+		}
 
 		if saveFile != "" {
 
@@ -62,7 +78,12 @@ var testCmd = &cobra.Command{
 			saveFile = replaceFile
 		}
 
-		config.Load(configFile)
+		if configFile != "" {
+
+			fmt.Println("Info->Configuration Found, values in config file will override command line args")
+			config.Load(configFile)
+
+		}
 
 		// apply flags
 
@@ -76,14 +97,20 @@ var testCmd = &cobra.Command{
 		ctx, cancel := context.WithTimeout(context.Background(), time.Second*time.Duration(duration))
 
 		if len(config.Url()) == 0 && len(args) == 0 {
-			fmt.Println("API URL required")
+			fmt.Println("API URL required as argument, or define in config.yaml")
 
 		} else {
+
+			if len(config.Url()) == 0 {
+				config.AddUrl(args[0])
+			}
 
 			stats.Users(users)
 			stats.Duration(config.Duration())
 
 			urls := config.Url()
+			//var urls []string
+			//urls = append(urls, "https://keyholesoftware.com")
 			stats.ReportBegin(urls)
 
 			log.Println("Begin")
@@ -91,14 +118,9 @@ var testCmd = &cobra.Command{
 
 				go doUser(ctx, urls, i)
 
-				//	client := http.Client{}
-				//	for j := 0; j < len(urls); j++ {
-				//		go doInvoke(ctx, i, urls[j], client)
-				//	}
-
 				seconds := strconv.Itoa(ramp)
 				dur, _ := time.ParseDuration(seconds + "s")
-				fmt.Print("Ramping->User ", i)
+				fmt.Print("Ramping->User ", i, " ")
 				time.Sleep(dur)
 
 			}
@@ -133,8 +155,8 @@ func doUser(ctx context.Context, urls []string, user int) {
 	seconds := strconv.Itoa(config.Wait())
 	wait, _ := time.ParseDuration(seconds + "s")
 	client := http.Client{}
-	for j := 0; j < len(urls); j++ {
-		go doInvoke(ctx, urls[j], client, user)
+	for _, url := range urls {
+		go doInvoke(ctx, url, client, user)
 		time.Sleep(wait)
 	}
 
@@ -163,12 +185,14 @@ func init() {
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	testCmd.PersistentFlags().String("config", "config.yaml", "YAML Configuration File")
+	testCmd.PersistentFlags().String("config", "", "YAML Configuration File")
 	testCmd.PersistentFlags().String("save", "", "save API stats to file, in CSV format")
 	testCmd.PersistentFlags().String("replace", "", "save API stats to file, replace file if exists, in CSV format")
+	testCmd.PersistentFlags().String("users", "1", "Simulated Users")
+	testCmd.PersistentFlags().String("duration", "20", "Duration to Run Test")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// testCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	//testCmd.Flags().Boolp("toggle", "t", false, "Help message for toggle")
 
 }
