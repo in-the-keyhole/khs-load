@@ -46,11 +46,11 @@ func Invoke(aurl string, count int, client http.Client, user int) {
 			data.Set(k, v)
 		}
 
-		if config.ContentType() == "" {
+		if strings.ToLower(config.ContentType()) == "application/x-www-form-urlencoded" {
 
 			headerContent = strings.NewReader(data.Encode())
 
-		} else if strings.EqualFold(config.ContentType(), "application/json ") {
+		} else if strings.ToLower(config.ContentType()) == "application/json" {
 
 			b := new(bytes.Buffer)
 
