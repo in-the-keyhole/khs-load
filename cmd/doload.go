@@ -33,7 +33,7 @@ import (
 )
 
 // testCmd represents the test command
-var testCmd = &cobra.Command{
+var doCmd = &cobra.Command{
 	Use:   "do",
 	Short: "API load testing by Keyhole Software (http://keyholesoftware.com)",
 	Long: `Keyhole Software Load testing. This utility will load test single or multiple URI's. A URI, 
@@ -162,6 +162,9 @@ func applyFlags(cmd *cobra.Command) {
 	templateFlag, _ := cmd.Flags().GetString("tokentemplate")
 	config.SetTokenTemplate(templateFlag)
 
+	contenttypeFlag, _ := cmd.Flags().GetString("contenttype")
+	config.SetContentType(contenttypeFlag)
+
 	if configFile != "" {
 
 		fmt.Println("Info->Configuration Found, values in config file will override command line args")
@@ -200,20 +203,21 @@ func doInvoke(ctx context.Context, url string, client http.Client, user int) {
 }
 
 func init() {
-	rootCmd.AddCommand(testCmd)
+	rootCmd.AddCommand(doCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	testCmd.PersistentFlags().String("config", "", "YAML Configuration File")
-	testCmd.PersistentFlags().String("save", "", "save API stats to file, in CSV format")
-	testCmd.PersistentFlags().String("replace", "", "save API stats to file, replace file if exists, in CSV format")
-	testCmd.PersistentFlags().String("users", "1", "Simulated Users")
-	testCmd.PersistentFlags().String("wait", "1", "Seconds to wait between requests")
-	testCmd.PersistentFlags().String("duration", "20", "Duration to Run Test")
-	testCmd.PersistentFlags().String("authtoken", "", "Authorization Token")
-	testCmd.PersistentFlags().String("tokentemplate", "", "Authorization header value format")
+	doCmd.PersistentFlags().String("config", "", "YAML Configuration File")
+	doCmd.PersistentFlags().String("save", "", "save API stats to file, in CSV format")
+	doCmd.PersistentFlags().String("replace", "", "save API stats to file, replace file if exists, in CSV format")
+	doCmd.PersistentFlags().String("users", "1", "Simulated Users")
+	doCmd.PersistentFlags().String("wait", "1", "Seconds to wait between requests")
+	doCmd.PersistentFlags().String("duration", "20", "Duration to Run Test")
+	doCmd.PersistentFlags().String("authtoken", "", "Authorization Token")
+	doCmd.PersistentFlags().String("tokentemplate", "", "Authorization header value format")
+	doCmd.PersistentFlags().String("contenttype", "application/json", "Request Header content-type header value")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:

@@ -18,29 +18,50 @@ limitations under the License.
 package invoke
 
 import (
+	"bytes"
+	"encoding/json"
 	"fmt"
 	"io"
 	"khsload/config"
 	"khsload/stats"
 	"log"
 	"net/http"
+	"net/url"
 	"strings"
 	"time"
 )
 
-func Invoke(url string, count int, client http.Client, user int) {
+func Invoke(aurl string, count int, client http.Client, user int) {
 
-	urlItems := strings.Split(url, ",")
+	urlItems := strings.Split(aurl, ",")
 
-	/*	var keyValues map[string]string
+	var keyValues map[string]string
+	data := url.Values{}
+	var headerContent io.Reader = nil
+	if len(urlItems) > 2 {
 
-		if len(urlItems) > 2 {
-			keyValues = ParseKeyValues(urlItems[2])
+		keyValues = ParseKeyValues(urlItems[2])
+
+		for k, v := range keyValues {
+			data.Set(k, v)
 		}
-	*/
 
-	//client := http.Client{}
-	req, err := http.NewRequest(urlItems[0], urlItems[1], nil)
+		if config.ContentType() == "" {
+
+			headerContent = strings.NewReader(data.Encode())
+
+		} else if strings.EqualFold(config.ContentType(), "application/json ") {
+
+			b := new(bytes.Buffer)
+
+			json.NewEncoder(b).Encode(data)
+
+			headerContent = bytes.NewReader(b.Bytes())
+
+		}
+	}
+
+	req, err := http.NewRequest(urlItems[0], urlItems[1], headerContent)
 	if err != nil {
 		stats.Failure()
 		log.Println(err)
@@ -48,6 +69,7 @@ func Invoke(url string, count int, client http.Client, user int) {
 
 	token := config.AuthToken()
 	req.Header.Set("authorization", token)
+	req.Header.Set("Content-Type", config.ContentType())
 
 	start := time.Now().UnixNano() / 1000000
 
@@ -67,13 +89,13 @@ func Invoke(url string, count int, client http.Client, user int) {
 				log.Println("Error reading response ", err)
 			}
 
-			stats.AddCall(url, int(duration), len(b), user)
+			stats.AddCall(aurl, int(duration), len(b), user)
 			stats.Sucess()
 			fmt.Print(".")
 
 		} else {
 
-			log.Println("Failed ->", url, " Status Code = ", resp.StatusCode)
+			log.Println("Failed ->", aurl, " Status Code = ", resp.StatusCode)
 			stats.Failure()
 
 		}

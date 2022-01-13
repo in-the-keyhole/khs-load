@@ -52,6 +52,7 @@ type ConfigData struct {
 	Url           []string
 	AuthToken     string
 	TokenTemplate string
+	ContentType   string
 }
 
 var yamlConfig ConfigData = ConfigData{}
@@ -80,6 +81,16 @@ func AddUrl(url string) {
 
 	yamlConfig.Url = []string{m + "," + u}
 
+}
+
+func ContentType() string {
+
+	return yamlConfig.ContentType
+}
+
+func SetContentType(ct string) {
+
+	yamlConfig.ContentType = ct
 }
 
 func Duration() int {
