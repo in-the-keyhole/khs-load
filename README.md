@@ -15,16 +15,19 @@ Command Line utility written in [Go](https://go.dev) that load tests API's with 
 
 ## Command Line Flags 
 
-The following command line flags can be used to configure your load test
+The following command line flags can be used to configure your load test. These options can also be defined in a `YAML` config file, see section below.
 
 ```
-    --duration  Int      Number of seconds to run test
-    --users     Int      Number of users to simulate 
-    --ramp      Int      Number of seconds between starting users
-    --wait      Int      Number of seconds to wait between requests  
-    --config    string   YAML config file see YAML Config section below
-    --save      string   Save results to CSV file
-    --replace   string   Save and replace file if exists results to CSV file
+    --duration      Int      Number of seconds to run test
+    --users         Int      Number of users to simulate 
+    --ramp          Int      Number of seconds between starting users
+    --wait          Int      Number of seconds to wait between requests  
+    --config        string   YAML config file see YAML Config section below
+    --save          string   Save results to CSV file
+    --replace       string   Save and replace file if exists results to CSV file
+    --contenttype   string   Type (i.e. application/json) for POSTING data
+    --authtoken     string   Authorization token 
+    --tokentemplate string   Expression to format authtoken in request header
 ```
 ## Installing and Running from Source Code
 
@@ -100,7 +103,7 @@ tokentemplate: "Bearer {{.}}"
 auth:
   url: https://<authenticate URL>
   userid: xxxxx
-  password: dddddd
+  password: xxxxx
   tokenizeusing: ","
   gettoken: "token"
   splitwith: ":"
@@ -112,6 +115,21 @@ url:
   - GET,<URL>
 
 ```
+## POST Requests 
+GET requests are made by default, however POST requests can be made by prefixing the URL with `POST` as shown below.
+
+```
+    $./khsload do "post,http://<address>,key1=value&key2=value"
+```
+
+Key/Value data is supplied after the address. Content type is of `POSTED` data defaults to `application/json`. This can be changed to `application/x-www-form-urlencoded` using the following command line flag.
+
+
+```
+    $./khsload do "post,http://<address>,key1=value&key2=value" -contenttype application/x-www-form-urlencoded
+```
+
+
 ## Token Based Authorization 
 This utilitty supports load testing `TOKEN` based authentication schemes. If an API has a persistent access token that can be applied to request headers,you can specify this using the command line `-token` flag, or define in the `YAML` config. 
 
