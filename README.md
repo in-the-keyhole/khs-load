@@ -11,6 +11,9 @@ Command Line utility written in [Go](https://go.dev) that load tests API's with 
 ```
     $ ./bin/macosx/khsload do https://keyholesoftware.com --users 2 --duration 30 
 ```
+* Note: currently only Macosx build is avaiable, follow the __Installation and Running from Source__ section below to create an executable binary for other environemnts * 
+
+
 3. Results will be output to the console 
 
 ## Command Line Flags 
