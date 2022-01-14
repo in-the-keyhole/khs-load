@@ -27,6 +27,7 @@ import (
 	"log"
 	"net/http"
 	"net/url"
+	"os"
 	"strings"
 	"time"
 )
@@ -76,7 +77,10 @@ func Invoke(aurl string, count int, client http.Client, user int) {
 	resp, err := client.Do(req)
 	if err != nil {
 		stats.Failure()
-		log.Println(err)
+		fmt.Println(err)
+		fmt.Println("Error Invoking "+urlItems[0], urlItems[1], " Aborting")
+		os.Exit(3)
+
 	} else {
 
 		if resp.StatusCode >= 200 && resp.StatusCode <= 299 {
