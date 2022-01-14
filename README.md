@@ -126,7 +126,7 @@ Key/Value data is supplied after the address. Content type is of `POSTED` data d
 
 
 ```
-    $./khsload do "post,http://<address>,key1=value&key2=value" -contenttype application/x-www-form-urlencoded
+    $./khsload do "post,https://<Your POST Address Here>,akey1=avalue&akey2=avalue" -contenttype application/x-www-form-urlencoded
 ```
 
 
