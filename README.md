@@ -1,6 +1,7 @@
 # Keyhole Software Load Testing Utility
 
-Command Line utility written in [Go](https://go.dev) that load tests API's with a specified simulated users. Reports throughput statistics and performance Graphs can be generated. 
+This command Line utility, written in [Go](https://go.dev),  load tests APIs against specified simulated users. 
+It can generate throughput statistics and performance Graphs. 
 
 ## Running 
 
@@ -8,25 +9,28 @@ Command Line utility written in [Go](https://go.dev) that load tests API's with 
 
 2. Open a command line in cloned directory and execute one of the following:
 
-###### MacOs Intel
+###### macOs Intel
 
 ```
-    ./bin/macosx/khsload do https://keyholesoftware.com --users 2 --duration 30 
+    ./bin/macOs/khsload do https://keyholesoftware.com --users 2 --duration 30 
 ```
 
-###### MacOs Apple Silicon
+###### macOs Apple Silicon
 
 ```
-    ./bin/macosx-arm64/khsload do https://keyholesoftware.com --users 2 --duration 30 
+    ./bin/macOs-arm64/khsload do https://keyholesoftware.com --users 2 --duration 30 
 ```
-*Note: currently only MacOs builds are pre-built in this repository. Follow the __Installation and Running from Source__ section below to create an executable binary for other environemnts* 
+*Note: we currently supply only macOs pre-built targets in this repository. 
+Follow the __Installation and Running from Source__ section below to create an executable 
+binary for other environemnts* 
 
 
-3. Results will be output to the console 
+3. The console displays results output 
 
 ## Command Line Flags 
 
-The following command line flags can be used to configure your load test. These options can also be defined in a `YAML` config file, see section below.
+Use the following command line flags to configure your load test. 
+You can define options can in a `YAML` config file as well. Reference: 
 
 ```
     --duration      Int      Number of seconds to run test
@@ -46,46 +50,48 @@ The following command line flags can be used to configure your load test. These 
 
 2. Clone Repo 
 
-3. Open a command line terminal and navigate to the repo directory and enter the following commands 
+3. Open a command line terminal, navigate to the repo directory, and then enter these commands:
 
 ```
     go install
     go build  
 ```
 
-This will create an executable named `khsload` in your directory. that can be executed with this command. See previous sections for options.
+That will create an executable named `khsload` in your directory. 
+Execute it with this command: 
 
 ```
     ./khsload 
 ```
+See previous sections for options.
 
 ## Plotting Results 
 
-Results saved to a `CSV` file can be plotted to a scatter graph with the following command 
+You can plot in a scatter graph saved to a `CSV` file.  
 
-**Run a Load test and save to `test.csv` with the following command**
+**Run a Load test saved to `test.csv` by using the following command:**
 
 ```
     ./khsload do http://keyholesoftware.com --users 4 --duration 20 --save test.csv 
 ```
 
-**Generate a plot with the resulting `test.csv`**
+**Generate a plot from the generated `test.csv`**
 
 ```
     ./khsload plot test.csv
 ```
 
-A scatter based Graph will be plotted to a file named `khsplot.png` 
+That command creates a scatter-based graph in a file named `khsplot.png`. 
 
-Here's and example graph
+Example graph:
 
 ![](khsplot.png)
 
 ### Configuration YAML 
 
-Instead of a command line flags test options can be defined in a `YAML` based configuration file. 
+Instead of supplying command line flags, you can define test options in a `YAML` configuration file. 
 
-Here's an example YAML file...
+An example YAML file...
 ```
 #
 # Number of Users to Simulate 
@@ -127,13 +133,15 @@ url:
 
 ```
 ## POST Requests 
-GET requests are made by default, however POST requests can be made by prefixing the URL with `POST` as shown below.
+HTTP GET is the default request method. Prefix the URL with `POST` to carry 
+out an HTTP POST request, as shown here:
 
 ```
     ./khsload do "post|http://<address>|key1=value&key2=value"
 ```
-
-Key/Value data is supplied after the address. Content type is of `POSTED` data defaults to `application/json`. This can be changed to `application/x-www-form-urlencoded` using the following command line flag.
+Supply key/value data after the address. 
+Content type of `POSTED` data defaults to `application/json`. 
+You may chnage it `application/x-www-form-urlencoded` using a `-contenttype` flag:
 
 
 ```
@@ -142,14 +150,16 @@ Key/Value data is supplied after the address. Content type is of `POSTED` data d
 
 
 ## Token Based Authentication 
-This utilitty supports load testing `TOKEN` based authentication schemes. If an API has a persistent access token that can be applied to request headers,you can specify this using the command line `-token` flag, or define in the `YAML` config. 
+This utilitty supports load testing `TOKEN`-based authentication schemes. 
+If an API has a persistent access token applicable to request headers,
+you can specify it using the command line `-token` flag (or define it in the `YAML` config). 
 
 ```
     ./khsload do <some url> -token <auth token>
 ```
 
-Tokens will be applied to request headers using the `tokentemplate` expression. This expression allows the token value to be applied to `authorization` request `Header`
-field. 
+Tokens apply to request headers using the `tokentemplate` expression. 
+This appies the token value to an `authorization` request `Header` field. 
 
 ``` 
     ./khsload do <some url> -authtoken <auth token> -tokentemplate "{{Bearer .}}"
