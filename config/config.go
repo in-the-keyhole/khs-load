@@ -56,7 +56,7 @@ type ConfigData struct {
 	ContentType   string
 }
 
-var yamlConfig ConfigData = ConfigData{}
+var yamlConfig = ConfigData{}
 
 var templateToken string
 
@@ -66,7 +66,7 @@ func IsAuth() bool {
 
 }
 
-// SetName receives a pointer to Foo so it can modify it.
+// SetDuration receives a pointer to Foo so it can modify it.
 func SetDuration(duration int) {
 	yamlConfig.Duration = duration
 }
@@ -239,7 +239,7 @@ func Load(file string) {
 	check(err)
 	//fmt.Print(string(dat))
 
-	err = yaml.Unmarshal([]byte(data), &yamlConfig)
+	err = yaml.Unmarshal(data, &yamlConfig)
 	if err != nil {
 		log.Fatalf("Error UnMarshalling Config file: %v", err)
 	}
