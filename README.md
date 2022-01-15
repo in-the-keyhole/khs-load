@@ -6,12 +6,20 @@ Command Line utility written in [Go](https://go.dev) that load tests API's with 
 
 1. Clone Repository 
 
-2. Open a command line in cloned directory and execute the following
+2. Open a command line in cloned directory and execute one of the following:
+
+###### MacOs Intel
 
 ```
     ./bin/macosx/khsload do https://keyholesoftware.com --users 2 --duration 30 
 ```
-*Note: currently only Macosx build is avaiable, follow the __Installation and Running from Source__ section below to create an executable binary for other environemnts* 
+
+###### MacOs Apple Silicon
+
+```
+    ./bin/macosx-arm64/khsload do https://keyholesoftware.com --users 2 --duration 30 
+```
+*Note: currently only MacOs builds are pre-built in this repository. Follow the __Installation and Running from Source__ section below to create an executable binary for other environemnts* 
 
 
 3. Results will be output to the console 
