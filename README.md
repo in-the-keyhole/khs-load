@@ -141,11 +141,11 @@ out an HTTP POST request, as shown here:
 ```
 Supply key/value data after the address. 
 Content type of `POSTED` data defaults to `application/json`. 
-You may chnage it `application/x-www-form-urlencoded` using a `-contenttype` flag:
+You may chnage it `application/x-www-form-urlencoded` using a `--contenttype` flag:
 
 
 ```
-    ./khsload do "post,https://<Your POST Address Here>,akey1=avalue&akey2=avalue" -contenttype application/x-www-form-urlencoded
+    ./khsload do "post,https://<Your POST Address Here>,akey1=avalue&akey2=avalue" --contenttype application/x-www-form-urlencoded
 ```
 
 
