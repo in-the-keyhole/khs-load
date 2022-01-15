@@ -114,15 +114,15 @@ auth:
 # URL's to load test
 #
 url:
-  - POST,<URL>%201,key=value&key2=value2
-  - GET,<URL>
+  - POST|<URL>|key=value&key2=value2
+  - GET|<URL>
 
 ```
 ## POST Requests 
 GET requests are made by default, however POST requests can be made by prefixing the URL with `POST` as shown below.
 
 ```
-    ./khsload do "post,http://<address>,key1=value&key2=value"
+    ./khsload do "post|http://<address>|key1=value&key2=value"
 ```
 
 Key/Value data is supplied after the address. Content type is of `POSTED` data defaults to `application/json`. This can be changed to `application/x-www-form-urlencoded` using the following command line flag.
