@@ -150,7 +150,7 @@ You may chnage it `application/x-www-form-urlencoded` using a `-contenttype` fla
 
 
 ## Token Based Authentication 
-This utilitty supports load testing `TOKEN`-based authentication schemes. 
+This utility supports load testing `TOKEN`-based authentication schemes. 
 If an API has a persistent access token applicable to request headers,
 you can specify it using the command line `-token` flag (or define it in the `YAML` config). 
 
