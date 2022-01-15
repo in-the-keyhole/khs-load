@@ -42,5 +42,5 @@ auth:
 # URL's to load test
 #
 url:
-  - POST,<URL>%201,key=value&key2=value2
-  - GET,<URL>
+  - POST|<URL>%201|key=value&key2=value2
+  - GET|<URL>

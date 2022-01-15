@@ -73,13 +73,13 @@ func SetDuration(duration int) {
 func AddUrl(url string) {
 	m := "GET"
 	u := url
-	t := strings.Split(url, ",")
+	t := strings.Split(url, "|")
 	if len(t) == 2 {
 		m = t[0]
 		u = t[1]
 	}
 
-	yamlConfig.Url = []string{m + "," + u}
+	yamlConfig.Url = []string{m + "|" + u}
 
 }
 

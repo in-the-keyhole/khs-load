@@ -34,7 +34,7 @@ import (
 
 func Invoke(aurl string, count int, client http.Client, user int) {
 
-	urlItems := strings.Split(aurl, ",")
+	urlItems := strings.Split(aurl, "|")
 
 	var keyValues map[string]string
 	data := url.Values{}
