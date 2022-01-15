@@ -138,7 +138,7 @@ func Users() int {
 	return yamlConfig.Users
 }
 
-// SetName receives a pointer to Foo so it can modify it.
+// SetUsers receives a pointer to Foo so it can modify it.
 func SetUsers(users int) {
 	yamlConfig.Users = users
 }
