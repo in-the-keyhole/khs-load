@@ -123,6 +123,35 @@ func Bottleneck(url string) int {
 
 }
 
+func Sla(url string) int {
+
+	//previous := 0
+	count := 0
+
+	for i := 0; i < len(calls); i++ {
+
+		if calls[i].Api == url {
+
+			count++
+
+			if (calls[i].Time) > config.Sla() {
+
+				return count
+
+			} else {
+
+				//previous = calls[i].Time
+
+			}
+
+		}
+
+	}
+
+	return -1
+
+}
+
 func GetCalls() []Call {
 	return calls
 }
@@ -164,6 +193,22 @@ func Sucess() {
 	successMutex.Lock()
 	Singleton.Success++
 	successMutex.Unlock()
+}
+
+func OutsideSla() int {
+
+	outsideSla := 0
+
+	for _, c := range calls {
+
+		if c.Time > config.Sla() {
+			outsideSla++
+		}
+
+	}
+
+	return outsideSla
+
 }
 
 func throughput() (float32, float32) {
@@ -234,6 +279,8 @@ func ReportEnd(urls []string) {
 	fmt.Println("Users:", Singleton.Users)
 	fmt.Println("Success:", Singleton.Success)
 	fmt.Println("Failures:", Singleton.Failures)
+
+	fmt.Printf("SLA (%v ms): %v  out of %v transactions took over %v milliseconds to exeucte", config.Sla(), OutsideSla(), Singleton.Success, config.Sla())
 
 	t, b := throughput()
 	fmt.Printf("\nTotal Throughput ( %v ) %6.2f TPS %6.2f bytes per second", len(urls), t, b)

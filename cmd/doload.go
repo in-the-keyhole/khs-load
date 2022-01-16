@@ -139,23 +139,21 @@ var doCmd = &cobra.Command{
 
 func applyFlags(cmd *cobra.Command) {
 
+	toInt := func(flag string) int {
+		waitFlag, _ := cmd.Flags().GetString(flag)
+		i, _ := strconv.Atoi(waitFlag)
+		return i
+	}
+
 	configFile, _ := cmd.Flags().GetString("config")
 
-	usersFlag, _ := cmd.Flags().GetString("users")
-	iusr, _ := strconv.Atoi(usersFlag)
-	config.SetUsers(iusr)
+	config.SetUsers(toInt("users"))
 
-	durationFlag, _ := cmd.Flags().GetString("duration")
-	idur, _ := strconv.Atoi(durationFlag)
-	config.SetDuration(idur)
+	config.SetDuration(toInt("duration"))
 
-	rampFlag, _ := cmd.Flags().GetString("ramp")
-	iramp, _ := strconv.Atoi(rampFlag)
-	config.SetRamp(iramp)
+	config.SetRamp(toInt("ramp"))
 
-	waitFlag, _ := cmd.Flags().GetString("wait")
-	iwait, _ := strconv.Atoi(waitFlag)
-	config.SetWait(iwait)
+	config.SetWait(toInt("ramp"))
 
 	tokenFlag, _ := cmd.Flags().GetString("authtoken")
 	config.SetAuthToken(tokenFlag)
@@ -165,6 +163,8 @@ func applyFlags(cmd *cobra.Command) {
 
 	contenttypeFlag, _ := cmd.Flags().GetString("contenttype")
 	config.SetContentType(contenttypeFlag)
+
+	config.SetSla(toInt("sla"))
 
 	if configFile != "" {
 
@@ -219,6 +219,7 @@ func init() {
 	doCmd.PersistentFlags().String("authtoken", "", "Authorization Token")
 	doCmd.PersistentFlags().String("tokentemplate", "", "Authorization header value format")
 	doCmd.PersistentFlags().String("contenttype", "application/json", "Request Header content-type header value")
+	doCmd.PersistentFlags().String("sla", "1000", "Transaction Service Level Agreement in Milliseconds ")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:

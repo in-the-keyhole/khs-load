@@ -42,6 +42,7 @@ type ConfigData struct {
 	Duration int
 	Ramp     int
 	Wait     int
+	Sla      int
 	Auth     struct {
 		Url           string
 		Userid        string
@@ -93,6 +94,20 @@ func AddUrl(url string) {
 func ContentType() string {
 
 	return yamlConfig.ContentType
+}
+
+func Sla() int {
+
+	if yamlConfig.Sla == 0 {
+		yamlConfig.Sla = 0
+	}
+
+	return yamlConfig.Sla
+}
+
+func SetSla(sla int) {
+
+	yamlConfig.Sla = sla
 }
 
 func SetContentType(ct string) {

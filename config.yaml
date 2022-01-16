@@ -15,6 +15,10 @@ duration: 120
 #
 wait: 1
 #
+# Service level agreement in Milliseconds (reports transaction that exceeds this number)
+#
+sla: 1000
+#
 # Template used to apply token to API request Headers
 #
 tokentemplate: "Bearer {{.}}"
