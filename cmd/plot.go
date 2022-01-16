@@ -188,13 +188,11 @@ func createCallData(data []string) (string, []Call) {
 			c.Milli, _ = strconv.ParseInt(items[0], 10, 64)
 			c.User, _ = strconv.Atoi(items[2])
 			c.Api = items[3]
-			if len(items) == 7 {
-				c.Time, _ = strconv.Atoi(items[5])
-				c.Bytes, _ = strconv.Atoi(items[6])
 
-			} else {
-				c.Time, _ = strconv.Atoi(items[4])
-				c.Bytes, _ = strconv.Atoi(items[5])
+			itemsLen := len(items)
+			if itemsLen > 5 {
+				c.Time, _ = strconv.Atoi(items[itemsLen-2])
+				c.Bytes, _ = strconv.Atoi(items[itemsLen-1])
 			}
 
 			results = append(results, c)
