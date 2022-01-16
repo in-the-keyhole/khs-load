@@ -15,12 +15,7 @@ It can generate throughput statistics and performance Graphs.
     ./bin/macOs/khsload do https://keyholesoftware.com --users 2 --duration 30 
 ```
 
-###### macOs Apple Silicon
-
-```
-    ./bin/macOs-arm64/khsload do https://keyholesoftware.com --users 2 --duration 30 
-```
-*Note: we currently supply only macOs pre-built targets in this repository. 
+*Note: we currently supply only macOs Intel pre-built targets in this repository. 
 Follow the __Installation and Running from Source__ section below to create an executable 
 binary for other environemnts* 
 
