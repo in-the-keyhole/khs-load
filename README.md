@@ -31,7 +31,8 @@ You can define options in a `YAML` config file as well. Reference:
     --duration      Int      Number of seconds to run test
     --users         Int      Number of users to simulate 
     --ramp          Int      Number of seconds between starting users
-    --wait          Int      Number of seconds to wait between requests  
+    --wait          Int      Number of seconds to wait between requests 
+    --sla           Int      Number of milliseconds used to report transaction duration that exceeds this amount  
     --config        string   YAML config file see YAML Config section below
     --save          string   Save results to CSV file
     --replace       string   Save and replace file if exists results to CSV file
@@ -108,6 +109,10 @@ wait: 1
 #
 # Template used to apply token to API request Headers
 #
+#
+# Service level agreement in Milliseconds (reports transaction that  #exceeds this number)
+#
+sla: 1000
 tokentemplate: "Bearer {{.}}"
 #
 # URL required to obtain an authorization Token
