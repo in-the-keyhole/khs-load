@@ -54,7 +54,7 @@ func Invoke(aurl string, count int, client http.Client, user int) {
 
 		} else if strings.ToLower(config.ContentType()) == "application/json" {
 
-			jsonString := urlItems[3]
+			jsonString := urlItems[2]
 
 			b := new(bytes.Buffer)
 
@@ -63,6 +63,7 @@ func Invoke(aurl string, count int, client http.Client, user int) {
 			headerContent = bytes.NewReader(b.Bytes())
 
 		}
+		// TODO error or handle other value
 	}
 
 	req, err := http.NewRequest(urlItems[0], urlItems[1], headerContent)
