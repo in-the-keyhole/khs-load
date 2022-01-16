@@ -128,23 +128,23 @@ auth:
 # URL's to load test
 #
 url:
-  - POST|<URL>|key=value&key2=value2
-  - GET|<URL>
+  - POST~<URL>~key=value&key2=value2
+  - GET~<URL>
 
 ```
 ## POST Requests 
-HTTP GET is the default request method. Prefix the URL with `POST|` to carry 
+HTTP GET is the default request method. Prefix the URL with `POST~` to carry 
 out an HTTP POST request, as shown here:
 
 ```
-    ./khsload do "post|http://<address>|key1=value&key2=value"
+    ./khsload do "post~http://<address>~key1=value&key2=value"
 ```
 Supply key/value data after the address. 
 Content type of `POSTED` data defaults to `application/json`. 
 You may chnage it `application/x-www-form-urlencoded` using a `--contenttype` flag:
 
 ```
-    ./khsload do "post|https://<Your POST Address Here>|akey1=avalue&akey2=avalue" --contenttype application/x-www-form-urlencoded
+    ./khsload do "post~https://<Your POST Address Here>~akey1=avalue&akey2=avalue" --contenttype application/x-www-form-urlencoded
 ```
 
 ## Token Based Authentication 

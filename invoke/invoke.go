@@ -35,7 +35,7 @@ import (
 
 func Invoke(aurl string, count int, client http.Client, user int) {
 
-	urlItems := strings.Split(aurl, "|")
+	urlItems := strings.Split(aurl, "~")
 
 	var keyValues map[string]string
 	data := url.Values{}
@@ -65,7 +65,7 @@ func Invoke(aurl string, count int, client http.Client, user int) {
 		}
 	}
 
-	req, err := http.NewRequest(urlItems[0], urlItems[1], headerContent)
+	req, err := http.NewRequest(strings.ToUpper(urlItems[0]), urlItems[1], headerContent)
 	if err != nil {
 		stats.Failure()
 		log.Println(err)
