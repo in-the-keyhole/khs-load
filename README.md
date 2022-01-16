@@ -30,7 +30,7 @@ binary for other environemnts*
 ## Command Line Flags 
 
 Use the following command line flags to configure your load test. 
-You can define options can in a `YAML` config file as well. Reference: 
+You can define options in a `YAML` config file as well. Reference: 
 
 ```
     --duration      Int      Number of seconds to run test
