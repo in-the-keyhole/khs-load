@@ -89,7 +89,8 @@ Example graph:
 
 ### Configuration YAML 
 
-Instead of supplying command line flags, you can define test options in a `YAML` configuration file. 
+Instead of supplying command line flags, you can define test options in a `YAML` configuration file
+by specifing file path in a `--config` flag. 
 
 An example YAML file...
 ```
@@ -128,7 +129,7 @@ auth:
 # URL's to load test
 #
 url:
-  - POST|<URL>|key=value&key2=value2
+  - POST|<URL>|{key: value, key2: value2}
   - GET|<URL>
 
 ```
@@ -140,7 +141,7 @@ out an HTTP POST request, as shown here:
     ./khsload do "post|http://<address>|key1=value&key2=value"
 ```
 Supply key/value data after the address. 
-Content type of `POSTED` data defaults to `application/json`. 
+Content type of `POST` data defaults to `application/json`. 
 You may chnage it `application/x-www-form-urlencoded` using a `--contenttype` flag:
 
 ```
