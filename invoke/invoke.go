@@ -54,7 +54,7 @@ func Invoke(aurl string, count int, client http.Client, user int) {
 
 		} else if strings.ToLower(config.ContentType()) == "application/json" {
 
-			jsonString := urlItems[2]
+			jsonString := urlItems[3]
 
 			b := new(bytes.Buffer)
 
