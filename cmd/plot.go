@@ -64,7 +64,7 @@ func (a CallSorter) Less(i, j int) bool { return a[i].Milli < a[j].Milli }
 // plotCmd represents the plot command
 var plotCmd = &cobra.Command{
 	Use:   "plot <CSV filename>",
-	Short: "Generate graph plots from a load test save file",
+	Short: "Generate graph plots duration verse response time from a load test save file",
 	Long: `Issue this command to produce a graph plot PNG from a load test save file, 
 
 	`,
