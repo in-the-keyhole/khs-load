@@ -150,17 +150,17 @@ You may chnage it `application/x-www-form-urlencoded` using a `--contenttype` fl
 ## Token Based Authentication 
 This utility supports load testing `TOKEN`-based authentication schemes. 
 If an API has a persistent access token applicable to request headers,
-you can specify it using the command line `-token` flag (or define it in the `YAML` config). 
+you can specify it using the command line `--authtoken` flag (or define it in the `YAML` config). 
 
 ```
-    ./khsload do <some url> -token <auth token>
+    ./khsload do <some url> --authtoken <auth token>
 ```
 
 Tokens apply to request headers using the `tokentemplate` expression. 
 This appies the token value to an `authorization` request `Header` field. 
 
 ``` 
-    ./khsload do <some url> -authtoken <auth token> -tokentemplate "{{Bearer .}}"
+    ./khsload do <some url> --authtoken <auth token> --tokentemplate "{{Bearer .}}"
 ```
 
 
