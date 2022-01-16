@@ -133,11 +133,12 @@ HTTP GET is the default request method. Prefix the URL with `POST~` to carry
 out an HTTP POST request, as shown here:
 
 ```
-    ./khsload do "POST~http://<address>~key1=value&key2=value"
-```
-Supply key/value data after the address. 
-Content type of `POST` data defaults to `application/json`. 
-You may chnage it `application/x-www-form-urlencoded` using a `--contenttype` flag:
+    ./khsload do "POST~http://<address>~{key1: value, key2: value}"
+``` 
+Content type of `POST` data defaults to `application/json`.
+Supply JSON as an object literal after the address tilde `~`.
+
+You may chnage the content type to `application/x-www-form-urlencoded` using a `--contenttype` flag:
 
 ```
     ./khsload do "POST~https://<Your POST Address Here>~akey1=avalue&akey2=avalue" --contenttype application/x-www-form-urlencoded
