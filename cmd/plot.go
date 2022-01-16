@@ -64,9 +64,8 @@ func (a CallSorter) Less(i, j int) bool { return a[i].Milli < a[j].Milli }
 // plotCmd represents the plot command
 var plotCmd = &cobra.Command{
 	Use:   "plot <CSV filename>",
-	Short: "Generated Graph Plots from 'saved' load file",
-	Long: `When performing a Load Test output from the test can be saved to a file, this file 
-	is ingested by this command to produce a Graph Plot PNG'
+	Short: "Generate graph plots from a load test save file",
+	Long: `Issue this command to produce a graph plot PNG from a load test save file, 
 
 	`,
 	Run: func(cmd *cobra.Command, args []string) {

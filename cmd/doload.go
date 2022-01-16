@@ -27,6 +27,7 @@ import (
 	"net/http"
 	"os"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -175,13 +176,25 @@ func applyFlags(cmd *cobra.Command) {
 
 }
 
+// If url starts with form "GET|POST" remove the first item "GET|" or "POST|"
+func reduceHttpMethod(url string) string {
+	urlItems := strings.Split(url, "|")
+	if len(urlItems) > 2 {
+		if urlItems[1] == "POST" || urlItems[1] == "GET" {
+			reducedUrlItems := append(urlItems[:0], urlItems[1:]...)
+			return strings.Join(reducedUrlItems, "|")
+		}
+	}
+	return url
+}
+
 func doUser(ctx context.Context, urls []string, user int) {
 
 	seconds := strconv.Itoa(config.Wait())
 	wait, _ := time.ParseDuration(seconds + "s")
 	client := http.Client{}
 	for _, url := range urls {
-		go doInvoke(ctx, url, client, user)
+		go doInvoke(ctx, reduceHttpMethod(url), client, user)
 		time.Sleep(wait)
 	}
 

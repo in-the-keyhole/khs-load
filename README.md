@@ -15,12 +15,7 @@ It can generate throughput statistics and performance Graphs.
     ./bin/macOs/khsload do https://keyholesoftware.com --users 2 --duration 30 
 ```
 
-###### macOs Apple Silicon
-
-```
-    ./bin/macOs-arm64/khsload do https://keyholesoftware.com --users 2 --duration 30 
-```
-*Note: we currently supply only macOs pre-built targets in this repository. 
+*Note: we currently supply only macOs Intel pre-built targets in this repository. 
 Follow the __Installation and Running from Source__ section below to create an executable 
 binary for other environemnts* 
 
@@ -89,7 +84,8 @@ Example graph:
 
 ### Configuration YAML 
 
-Instead of supplying command line flags, you can define test options in a `YAML` configuration file. 
+Instead of supplying command line flags, you can define test options in a `YAML` configuration file
+by specifing file path in a `--config` flag. 
 
 An example YAML file...
 ```
@@ -140,7 +136,7 @@ out an HTTP POST request, as shown here:
     ./khsload do "post~http://<address>~key1=value&key2=value"
 ```
 Supply key/value data after the address. 
-Content type of `POSTED` data defaults to `application/json`. 
+Content type of `POST` data defaults to `application/json`. 
 You may chnage it `application/x-www-form-urlencoded` using a `--contenttype` flag:
 
 ```
@@ -150,17 +146,17 @@ You may chnage it `application/x-www-form-urlencoded` using a `--contenttype` fl
 ## Token Based Authentication 
 This utility supports load testing `TOKEN`-based authentication schemes. 
 If an API has a persistent access token applicable to request headers,
-you can specify it using the command line `-token` flag (or define it in the `YAML` config). 
+you can specify it using the command line `--authtoken` flag (or define it in the `YAML` config). 
 
 ```
-    ./khsload do <some url> -token <auth token>
+    ./khsload do <some url> --authtoken <auth token>
 ```
 
 Tokens apply to request headers using the `tokentemplate` expression. 
 This appies the token value to an `authorization` request `Header` field. 
 
 ``` 
-    ./khsload do <some url> -authtoken <auth token> -tokentemplate "{{Bearer .}}"
+    ./khsload do <some url> --authtoken <auth token> --tokentemplate "{{Bearer .}}"
 ```
 
 

@@ -214,7 +214,7 @@ func ReportBegin(urls []string) {
 	fmt.Println(Title())
 	fmt.Println("Each API call will WAIT for ", wait, " seconds between calls")
 	fmt.Println("---")
-	fmt.Println("The Following URI's will be load tested...")
+	fmt.Println("Testing the Following URIs:")
 
 	for i := 0; i < len(urls); i++ {
 
