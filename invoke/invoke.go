@@ -42,21 +42,23 @@ func Invoke(aurl string, count int, client http.Client, user int) {
 	var headerContent io.Reader = nil
 	if len(urlItems) > 2 {
 
-		keyValues = ParseKeyValues(urlItems[2])
-
-		for k, v := range keyValues {
-			data.Set(k, v)
-		}
-
 		if strings.ToLower(config.ContentType()) == "application/x-www-form-urlencoded" {
+
+			keyValues = ParseKeyValues(urlItems[2])
+
+			for k, v := range keyValues {
+				data.Set(k, v)
+			}
 
 			headerContent = strings.NewReader(data.Encode())
 
 		} else if strings.ToLower(config.ContentType()) == "application/json" {
 
+			jsonString := urlItems[2]
+
 			b := new(bytes.Buffer)
 
-			json.NewEncoder(b).Encode(data)
+			json.NewEncoder(b).Encode(jsonString)
 
 			headerContent = bytes.NewReader(b.Bytes())
 
