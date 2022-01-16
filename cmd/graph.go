@@ -63,7 +63,7 @@ func doLineGraph() {
 	p.Add(plotter.NewGrid())
 
 	err := plotutil.AddScatters(p,
-		createScatterData(samplings()))
+		createScatterData(bottleneckSamplings()))
 
 	if err != nil {
 		panic(err)
@@ -73,6 +73,25 @@ func doLineGraph() {
 	if err := p.Save(8*vg.Inch, 4*vg.Inch, outputFile); err != nil {
 		panic(err)
 	}
+
+}
+
+func bottleneckSamplings() []Call {
+
+	results := make([]Call, 0)
+	count := 0
+
+	//	sampleSize := 20
+	for i := range calls {
+
+		//	if count%sampleSize == 0 {
+		results = append(results, calls[i])
+		//	}
+		count++
+
+	}
+
+	return results
 
 }
 
