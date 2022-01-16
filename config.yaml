@@ -3,7 +3,7 @@
 #
 users: 25
 #
-# Seconds to wait while ramping us users
+# Seconds to wait while ramping up users
 #
 ramp: 2
 #
@@ -11,7 +11,7 @@ ramp: 2
 #
 duration: 120
 #
-# Secconds to wait inbetween API requests
+# Seconds to wait between API requests
 #
 wait: 1
 #
@@ -25,7 +25,7 @@ tokentemplate: "Bearer {{.}}"
 #
 authtoken: "*** some auth token ***"
 #
-# URL required to obtain an authorization Token from an athentication API 
+# URL required to obtain an authorization Token from an authentication API
 # that returns a token
 #
 # Note: If an authorization token already exists, you won't need to use this 
@@ -39,7 +39,7 @@ auth:
   gettoken: "token"
   splitwith: ":"
 #
-# URL's to load test
+# URLs to load-test
 #
 url:
   - POST|<URL>%201|key=value&key2=value2
