@@ -40,7 +40,7 @@ You can define options can in a `YAML` config file as well. Reference:
     --config        string   YAML config file see YAML Config section below
     --save          string   Save results to CSV file
     --replace       string   Save and replace file if exists results to CSV file
-    --contenttype   string   Type (i.e. application/json) for POSTING data
+    --contenttype   string   Type (e.g. application/json) for POSTING data
     --authtoken     string   Authorization token 
     --tokentemplate string   Expression to format authtoken in request header
 ```
