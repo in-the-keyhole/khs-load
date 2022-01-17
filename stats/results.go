@@ -166,7 +166,7 @@ func Save(file string, urls []string) {
 
 	t, _ := throughput()
 	sla := config.Sla()
-	s := fmt.Sprintf("%v,%f,%v\n", Singleton.Users, t, sla)
+	s := fmt.Sprintf("%v,%f,%v,%v\n", Singleton.Users, t, sla, OutsideSla())
 
 	f.WriteString(s)
 

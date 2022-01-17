@@ -11,7 +11,7 @@
             "mode": "auto",
             "program": "${fileDirname}",
             "env": {},
-            "args": ["graph", "sla.csv" ]
+            "args": ["sla", "sla.csv" ]
         }
     
 

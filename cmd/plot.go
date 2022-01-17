@@ -57,13 +57,16 @@ var throughput float64
 
 var sla int
 
+var slacount int
+
 type CallSorter []Call
 
 func (a CallSorter) Len() int           { return len(a) }
 func (a CallSorter) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a CallSorter) Less(i, j int) bool { return a[i].Milli < a[j].Milli }
 
-func Sla() int { return sla }
+func Sla() int      { return sla }
+func SlaCount() int { return slacount }
 
 // plotCmd represents the plot command
 var plotCmd = &cobra.Command{
@@ -184,6 +187,12 @@ func createCallData(data []string) (string, []Call) {
 			check(e)
 
 			sla = s
+
+			c, e := strconv.Atoi(title[3])
+
+			check(e)
+
+			slacount = c
 
 		} else if i == 1 {
 
