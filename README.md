@@ -79,9 +79,22 @@ You can plot in a scatter graph saved to a `CSV` file.
 
 That command creates a scatter-based graph in a file named `khsplot.png`. 
 
-Example graph:
+Example PLOT graph:
 
-![](khsplot.png)
+![](docimages/khsplot.png)
+
+**Generate a SLA graph from the generated `test.csv`**
+
+```
+    ./khsload sla test.csv
+```
+
+That command creates a scatter-based graph in a file named `khssla.png`. 
+
+Example PLOT graph:
+
+![](docimages/khssla.png)
+
 
 ### Configuration YAML 
 
