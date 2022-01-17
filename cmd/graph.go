@@ -62,8 +62,8 @@ func doLineGraph() {
 
 	p.Add(plotter.NewGrid())
 
-	err := plotutil.AddScatters(p,
-		createScatterData(bottleneckSamplings()))
+	err := plotutil.AddLinePoints(p,
+		createScatterData(slaSamplings()))
 
 	if err != nil {
 		panic(err)
@@ -76,7 +76,7 @@ func doLineGraph() {
 
 }
 
-func bottleneckSamplings() []Call {
+func slaSamplings() []Call {
 
 	results := make([]Call, 0)
 	count := 0
@@ -84,9 +84,9 @@ func bottleneckSamplings() []Call {
 	//	sampleSize := 20
 	for i := range calls {
 
-		//	if count%sampleSize == 0 {
-		results = append(results, calls[i])
-		//	}
+		if int(calls[i].Milli) > Sla() {
+			results = append(results, calls[i])
+		}
 		count++
 
 	}
@@ -97,6 +97,8 @@ func bottleneckSamplings() []Call {
 
 func init() {
 	rootCmd.AddCommand(graphCmd)
+
+	plotCmd.PersistentFlags().String("file", "khssla.png", "File to save SLA GRAPH to")
 
 	// Here you will define your flags and configuration settings.
 

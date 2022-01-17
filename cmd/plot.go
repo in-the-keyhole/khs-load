@@ -55,11 +55,15 @@ var users int
 
 var throughput float64
 
+var sla int
+
 type CallSorter []Call
 
 func (a CallSorter) Len() int           { return len(a) }
 func (a CallSorter) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
 func (a CallSorter) Less(i, j int) bool { return a[i].Milli < a[j].Milli }
+
+func Sla() int { return sla }
 
 // plotCmd represents the plot command
 var plotCmd = &cobra.Command{
@@ -175,6 +179,12 @@ func createCallData(data []string) (string, []Call) {
 
 			check(e)
 
+			s, e := strconv.Atoi(title[2])
+
+			check(e)
+
+			sla = s
+
 		} else if i == 1 {
 
 			urls = strings.Split(line, ",")
@@ -186,14 +196,10 @@ func createCallData(data []string) (string, []Call) {
 			c := Call{}
 
 			c.Milli, _ = strconv.ParseInt(items[0], 10, 64)
-			c.User, _ = strconv.Atoi(items[2])
-			c.Api = items[3]
-
-			itemsLen := len(items)
-			if itemsLen > 5 {
-				c.Time, _ = strconv.Atoi(items[itemsLen-2])
-				c.Bytes, _ = strconv.Atoi(items[itemsLen-1])
-			}
+			c.User, _ = strconv.Atoi(items[1])
+			c.Api = items[2]
+			c.Time, _ = strconv.Atoi(items[3])
+			c.Bytes, _ = strconv.Atoi(items[4])
 
 			results = append(results, c)
 

@@ -11,7 +11,7 @@
             "mode": "auto",
             "program": "${fileDirname}",
             "env": {},
-            "args": ["do", "GET~https://www.google.com" ]
+            "args": ["graph", "sla.csv" ]
         }
     
 
