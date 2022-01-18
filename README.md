@@ -89,7 +89,8 @@ Example PLOT graph:
     ./khsload sla test.csv
 ```
 
-That command creates a scatter-based graph in a file named `khssla.png`. 
+That command creates a line graph of response times vs time offset in a file named `khssla.png`. 
+The heading shows the nnumber of requests, and users, as well as the count of responses that exceed the SLA limit.
 
 Example PLOT graph:
 
