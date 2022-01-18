@@ -71,10 +71,9 @@ func SlaCount() int { return slacount }
 // plotCmd represents the plot command
 var plotCmd = &cobra.Command{
 	Use:   "plot <CSV filename>",
-	Short: "Generate graph plots duration verse response time from a load test save file",
-	Long: `Issue this command to produce a graph plot PNG from a load test save file, 
-
-	`,
+	Short: "Renders a PNG scatter-graph of duration verse response time points from a load test save file",
+	Long: `Issue this command to produce a scatter-graph PNG from a load test save file, 
+The title shows the number of users, the total responses, as well as the TPS value.`,
 	Run: func(cmd *cobra.Command, args []string) {
 
 		file, _ := cmd.Flags().GetString("file")

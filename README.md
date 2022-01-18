@@ -77,7 +77,8 @@ You can plot in a scatter graph saved to a `CSV` file.
     ./khsload plot test.csv
 ```
 
-That command creates a scatter-based graph in a file named `khsplot.png`. 
+That command creates a scatter-based graph in a file named `khsplot.png`. The heading 
+shows the number of users, the total requests, and the TPS value.
 
 Example PLOT graph:
 
@@ -92,7 +93,7 @@ Example PLOT graph:
 That command creates a line graph of response times vs time offset in a file named `khssla.png`. 
 The heading shows the nnumber of requests, and users, as well as the count of responses that exceed the SLA limit.
 
-Example PLOT graph:
+Example SLA graph:
 
 ![](docimages/khssla.png)
 
