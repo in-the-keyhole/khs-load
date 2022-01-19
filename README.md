@@ -32,7 +32,7 @@ You can define options in a `YAML` config file as well. Reference:
     --users         Int      Number of users to simulate 
     --ramp          Int      Number of seconds between starting users
     --wait          Int      Number of seconds to wait between requests 
-    --sla           Int      Number of milliseconds used to report transaction duration that exceeds this amount  
+    --sla           Int      Number of milliseconds limit used to report excessive transaction duration  
     --config        string   YAML config file see YAML Config section below
     --save          string   Save results to CSV file
     --replace       string   Save and replace file if exists results to CSV file
@@ -78,7 +78,7 @@ You can plot in a scatter graph saved to a `CSV` file.
 ```
 
 That command creates a scatter-based graph in a file named `khsplot.png`. The heading 
-shows the number of users, the total requests, and the TPS value.
+shows the number of users, the total requests, along with the TPS value.
 
 Example PLOT graph:
 
@@ -153,7 +153,7 @@ HTTP GET is the default request method. Prefix the URL with `POST~` to carry
 out an HTTP POST request, as shown here:
 
 ```
-    ./khsload do "POST~http://<address>~{key1: value, key2: value}"
+    ./khsload do "POST~http://<Your POST Address Here>~{key1: value, key2: value}"
 ``` 
 Content type of `POST` data defaults to `application/json`.
 Supply JSON as an object literal after the address tilde `~`.
