@@ -130,6 +130,10 @@ wait: 1
 sla: 1000
 tokentemplate: "Bearer {{.}}"
 #
+# POST content type default is application/json
+#
+contenttype: "application/x-www-form-urlencoded"
+#
 # URL required to obtain an authorization Token
 #
 # 
@@ -179,6 +183,39 @@ This appies the token value to an `authorization` request `Header` field.
 ``` 
     ./khsload do <some url> --authtoken <auth token> --tokentemplate "{{Bearer .}}"
 ```
+
+## Credentialed Auth Token 
+If a authorization token is required via an authentication api call. You can specify the following configuraiton in a YAML config file as shown below.
+
+```
+auth:
+  url: https://<authenticate URL>
+  userid: xxxxx
+  password: xxxxx
+  tokenizeusing: ","
+  gettoken: "token"
+  splitwith: ":"
+```
+
+An authentication url is specified that will accept a user id an password values.  It assummes a stringfied JSON result with a token id that is ia JSON key value parameter. You can specify the key value using the `gettoken` value and the keys value is obtained by splitting this value with the `tokenusing` configuration value. 
+
+So considering the configuration above the utility will obtain an auth token that will be used for api calls to load test.  The Auth URL will be invoked with this call. 
+
+```
+http://<authenticate URL>  POST as application/JSON -> userid: xxxx password: xxxx 
+```
+
+A resulting JSON string will be returned as follows 
+
+```
+   { key1: ffdff,  token: abcdefh , key2: ddddddd }
+```
+
+The config will extract the token value from the string and use it as an authorization token
+
+
+
+
 
 
 
