@@ -12,7 +12,7 @@ It can generate throughput statistics and performance Graphs.
 ###### macOs Intel
 
 ```
-    ./bin/macOs/khsload do https://keyholesoftware.com --users 2 --duration 30 
+    ./bin/macOs/khsload do https://<an address> --users 10 --duration 30 
 ```
 
 *Note: we currently supply only macOs Intel pre-built targets in this repository. 
@@ -68,7 +68,7 @@ You can plot in a scatter graph saved to a `CSV` file.
 **Run a Load test saved to `test.csv` by using the following command:**
 
 ```
-    ./khsload do http://keyholesoftware.com --users 4 --duration 20 --save test.csv 
+    ./khsload do https://<an address> --users 4 --duration 20 --save test.csv 
 ```
 
 **Generate a plot from the generated `test.csv`**
