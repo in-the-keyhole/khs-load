@@ -1,7 +1,8 @@
-# Keyhole Software Load Testing Utility
+# Keyhole Software Load Testing Utility: khsLoad
 
-This command Line utility, written in [Go](https://go.dev),  load tests APIs against specified simulated users. 
-It can generate throughput statistics and performance Graphs. 
+khsLoad is command Line utility, written in [Go](https://go.dev), that load tests APIs against specified simulated users. It can generate throughput statistics and performance Graphs. 
+
+khsLoad is open source and was developed by [KeyholeSoftware.dev](http://keyholesoftware.dev).
 
 ## Running 
 
@@ -168,7 +169,7 @@ You may chnage the content type to `application/x-www-form-urlencoded` using a `
     ./khsload do "POST~https://<Your POST Address Here>~akey1=avalue&akey2=avalue" --contenttype application/x-www-form-urlencoded
 ```
 
-## Token Based Authentication 
+## Token-Based Authentication 
 This utility supports load testing `TOKEN`-based authentication schemes. 
 If an API has a persistent access token applicable to request headers,
 you can specify it using the command line `--authtoken` flag (or define it in the `YAML` config). 
@@ -212,17 +213,3 @@ A resulting JSON string will be returned as follows
 ```
 
 The config will extract the token value from the string and use it as an authorization token
-
-
-
-
-
-
-
-
-
-
-
-
-
-
